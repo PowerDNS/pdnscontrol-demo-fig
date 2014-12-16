@@ -1,0 +1,11 @@
+pdns:
+  build: .
+  links:
+    - mysql
+  ports:
+  - "8000:8000"
+  command: bash /pdnscontrol.sh
+mysql:
+  image: orchardup/mysql
+  environment:
+    MYSQL_ROOT_PASSWORD: 'root'
