@@ -69,6 +69,7 @@ service pdns-recursor start
 
 echo root:root | chpasswd
 sed -i -e s/without-password/yes/ /etc/ssh/sshd_config
+sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
 service ssh start
 
 /opt/pdnscontrol/pdnscontrol/venv-pdnscontrol/bin/gunicorn --chdir /opt/pdnscontrol/pdnscontrol/ -u pdnscontrol -w 5 -b :8000 --log-level debug  --error-logfile /dev/stderr pdnscontrol:app
