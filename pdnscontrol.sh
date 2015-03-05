@@ -17,6 +17,7 @@ experimental-json-interface=yes
 experimental-logfile=/var/log/messages
 webserver=yes
 webserver-password=pdnscontrol
+experimental-api-key=pdnscontrol
 
 gmysql-dbname=pdns
 gmysql-host=${MYSQL_1_PORT_3306_TCP_ADDR}
@@ -37,6 +38,7 @@ experimental-logfile=/var/log/messages
 experimental-webserver-port=8082
 experimental-webserver=yes
 experimental-webserver-password=pdnscontrol
+experimental-api-key=pdnscontrol
 include-dir=/etc/powerdns/recursor.conf.d
 
 local-address=0.0.0.0

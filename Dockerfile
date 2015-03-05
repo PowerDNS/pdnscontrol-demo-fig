@@ -2,10 +2,10 @@ FROM debian:testing
 RUN apt-get update
 RUN apt-get dist-upgrade -y 
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libpq-dev libmysqlclient-dev git python-virtualenv python-dev procps mysql-client tmux strace build-essential libpython-dev graphite-carbon graphite-web openssh-server libapache2-mod-wsgi apache2
-ADD https://downloads.powerdns.com/releases/deb/pdns-static_3.4.0-1_amd64.deb /
-RUN dpkg -i /pdns-static_3.4.0-1_amd64.deb
-ADD https://downloads.powerdns.com/releases/deb/pdns-recursor_3.6.1-1_amd64.deb /
-RUN dpkg -i /pdns-recursor_3.6.1-1_amd64.deb
+ADD https://downloads.powerdns.com/releases/deb/pdns-static_3.4.3-1_amd64.deb /
+RUN dpkg -i /pdns-static_3.4.3-1_amd64.deb
+ADD https://downloads.powerdns.com/releases/deb/pdns-recursor_3.7.1-1_amd64.deb /
+RUN dpkg -i /pdns-recursor_3.7.1-1_amd64.deb
 ADD schema.mysql.sql .
 RUN mkdir -p /opt
 RUN useradd -d /opt/pdnscontrol -m --system pdnscontrol
@@ -18,7 +18,7 @@ RUN chown _graphite:_graphite /var/lib/graphite/graphite.db
 
 USER pdnscontrol
 #WORKDIR /opt/pdnscontrol  convert below to rely on this
-RUN cd ~ && git clone https://github.com/PowerDNS/pdnscontrol.git && cd pdnscontrol && git checkout 7dcfdde6bbfad6e1616e5226598bdd69337cfb97
+RUN cd ~ && git clone https://github.com/PowerDNS/pdnscontrol.git && cd pdnscontrol && git checkout dd59cbc4e98e71493b471423b3fdca3479d14abd
 #WORKDIR /opt/pdnscontrol/pdnscontrol  and this
 RUN cd ~/pdnscontrol && virtualenv venv-pdnscontrol
 RUN cd ~/pdnscontrol && find ./venv-pdnscontrol/bin/
